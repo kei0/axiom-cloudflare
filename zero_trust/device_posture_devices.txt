@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "device_posture_results"
+| summarize dcount(DeviceID) by bin_auto(_time), DeviceModel, DeviceType, OSVersion, ClientVersion
+| limit 20

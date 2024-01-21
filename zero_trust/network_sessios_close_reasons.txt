@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where (['@cloudflare.Dataset'] =~ "zero_trust_network_sessions" and Protocol =~ "tcp")
+| summarize count() by bin_auto(_time), ConnectionCloseReason
+| limit 20

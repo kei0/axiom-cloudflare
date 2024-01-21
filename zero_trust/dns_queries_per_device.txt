@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] == "gateway_dns"
+| summarize Count = count() by DeviceName,DeviceID,SrcIP,Email,ColoCode, bin_auto(_time)
+| limit 10

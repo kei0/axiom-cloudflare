@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "zero_trust_network_sessions"
+| summarize Count = count() by bin_auto(_time), Offramp, SourceIP, IngressColoName, EgressIP, EgressColoName, OriginIP, Protocol, OriginPort, ConnectionCloseReason, DeviceName, Email
+| limit 20

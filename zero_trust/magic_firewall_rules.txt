@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where (['@cloudflare.Dataset'] =~ "network_analytics_logs" and MitigationSystem == "magic-firewall")
+| summarize count() by bin_auto(_time), MitigationSystem, RuleID,  Verdict, Outcome
+| limit 20

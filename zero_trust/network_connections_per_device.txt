@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "gateway_network"
+| summarize count() by bin_auto(_time), DeviceName, DeviceID, Email, SourceIP
+| limit 20

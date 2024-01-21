@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "magic_ids_detections"
+| summarize count() by bin_auto(_time), SignatureMessage,SourceIP,DestinationIP,Action
+| limit 20

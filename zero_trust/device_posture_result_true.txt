@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where (['@cloudflare.Dataset'] =~ "device_posture_results" and PostureEvaluatedResult == true)
+| summarize Check = dcount(DeviceID) by bin_auto(_time), DeviceName, PostureCheckName, PostureEvaluatedResult, PostureCheckType
+| limit 20

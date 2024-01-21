@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "access_requests"
+| summarize count() by bin_auto(_time), AppDomain
+| limit 20

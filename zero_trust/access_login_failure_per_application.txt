@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where (['@cloudflare.Dataset'] =~ "access_requests" and Allowed == false)
+| summarize dcount(Email) by bin_auto(_time), AppDomain, Action, Allowed, Connection, Country
+| limit 20

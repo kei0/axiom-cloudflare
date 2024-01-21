@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where (['@cloudflare.Dataset'] =~ "network_analytics_logs" and SourceASN == 0)
+| summarize Count = count() by bin_auto(_time), ColoCode, IPSourceSubnet, DestinationASNName, Outcome, Verdict, RuleID, RuleName, MitigationSystem
+| limit 20

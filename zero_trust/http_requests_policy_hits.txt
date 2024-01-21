@@ -1,0 +1,4 @@
+['cloudflare-logpush']
+| where ['@cloudflare.Dataset'] =~ "gateway_http"
+| summarize count() by bin_auto(_time), PolicyName, Action
+| limit 20
